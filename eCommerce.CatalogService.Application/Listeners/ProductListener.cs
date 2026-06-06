@@ -56,6 +56,10 @@ namespace eCommerce.CatalogService.Application.Listeners
                 await args.DeadLetterMessageAsync(args.Message, "DeserializationFailed", "Could not deserialize ProductAddedEvent");
                 return;
             }
+
+            // TODO : Implement Inbox Pattern
+            // When a service receives a message, it first checks an Inbox table to see if the message has already been processed
+
             await appService.InsertAsync(evt);
 
             await args.CompleteMessageAsync(args.Message);

@@ -2,10 +2,11 @@
 using eCommerce.CatalogService.Infrastructure.Entities;
 using eCommerce.CatalogService.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace eCommerce.CatalogService.Infrastructure.Implementations
 {
-    public class ProductRepository(ProductDbContext dbContext) : IProductRepository
+    public class ProductRepository(ProductDbContext dbContext, ILogger<ProductRepository> logger) : IProductRepository
     {
         public async Task<IEnumerable<ProductEntity>> GetPagedAsync(int pageNumber, int pageSize)
         {

@@ -4,11 +4,12 @@ using eCommerce.CatalogService.Application.Mappers;
 using eCommerce.CatalogService.Application.Models;
 using eCommerce.CatalogService.Infrastructure.Contracts;
 using eCommerce.CatalogService.Infrastructure.Entities;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace eCommerce.CatalogService.Application.Implementations
 {
-    public class ProductApplication(IProductRepository repository, IDistributedCache cache) : IProductApplication
+    public class ProductApplication(IProductRepository repository, IDistributedCache cache, ILogger<ProductApplication> logger) : IProductApplication
     {
         public async Task<IEnumerable<ProductResponse>> GetPagedAsync(int pageNumber, int pageSize)
         {

@@ -1,6 +1,8 @@
 using Azure.Messaging.ServiceBus;
 using eCommerce.CatalogService.Application;
 using eCommerce.CatalogService.Infrastructure.Extensions;
+using Microsoft.OpenApi;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,19 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Catalog API",
+        Description = "E-commerce Application Microservice which retrieves Products from Catalog API",
+     });
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    options.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+});
+
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
