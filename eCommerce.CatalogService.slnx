@@ -1,8 +1,9 @@
 <Solution>
   <Folder Name="/Api/">
-    <Project Path="eCommerce.ProductService.Api/eCommerce.CatalogService.Api.csproj" />
-    <Project Path="eCommerce.ProductService.Application/eCommerce.CatalogService.Application.csproj" />
-    <Project Path="eCommerce.ProductService.Domain/eCommerce.CatalogService.Domain.csproj" />
-    <Project Path="eCommerce.ProductService.Infrastructure/eCommerce.CatalogService.Infrastructure.csproj" />
+    <Project Path="eCommerce.CatalogService.Api/eCommerce.CatalogService.Api.csproj" />
+    <Project Path="eCommerce.CatalogService.Application/eCommerce.CatalogService.Application.csproj" />
+    <Project Path="eCommerce.CatalogService.Domain/eCommerce.CatalogService.Domain.csproj" />
+    <Project Path="eCommerce.CatalogService.Infrastructure/eCommerce.CatalogService.Infrastructure.csproj" />
   </Folder>
 </Solution>
+
