@@ -1,7 +1,7 @@
 ﻿using eCommerce.CatalogService.Application.Contracts;
+using eCommerce.CatalogService.Application.Listeners;
 using eCommerce.CatalogService.Application.Mappers;
 using eCommerce.CatalogService.Application.Models;
-using eCommerce.CatalogService.Domain.Models;
 using eCommerce.CatalogService.Infrastructure.Contracts;
 using eCommerce.CatalogService.Infrastructure.Entities;
 using System.Text.Json;
@@ -36,6 +36,18 @@ namespace eCommerce.CatalogService.Application.Implementations
             var productFromCache = productEntityFromCache!.ToDomain();
             var productResponseFromCache = productFromCache.ToResponse();
             return productResponseFromCache;
+        }
+
+        public async Task InsertAsync(ProductAddedEvent evt)
+        {
+            var productEntity = await repository.GetByIdAsync(evt.productId);
+            if (productEntity == null)
+            {
+                var product = new ProductEntity { Id = evt.productId, Name = evt.name, Description = evt.description };
+                await repository.AddAsync(product);
+
+                await cache.SetStringAsync(evt.productId, JsonSerializer.Serialize(productEntity), TimeSpan.FromMinutes(5));
+            }
         }
     }
 }

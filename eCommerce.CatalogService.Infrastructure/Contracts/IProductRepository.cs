@@ -7,5 +7,7 @@ namespace eCommerce.CatalogService.Infrastructure.Contracts
         Task<IEnumerable<ProductEntity>> GetPagedAsync(int pageNumber, int pageSize);
 
         Task<ProductEntity?> GetByIdAsync(string id);
+
+        Task AddAsync(ProductEntity productEntity);
     }
 }

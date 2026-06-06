@@ -22,5 +22,11 @@ namespace eCommerce.CatalogService.Infrastructure.Implementations
                 .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task AddAsync(ProductEntity productEntity)
+        {
+            dbContext.Products.Add(productEntity);
+            await dbContext.SaveChangesAsync();
+        }
     }
 }

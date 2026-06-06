@@ -1,3 +1,4 @@
+using Azure.Messaging.ServiceBus;
 using eCommerce.CatalogService.Application;
 using eCommerce.CatalogService.Infrastructure.Extensions;
 
@@ -13,6 +14,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddSingleton(sp =>
+{
+    var connectionString = builder.Configuration["ServiceBus"];
+    return new ServiceBusClient(connectionString);
+});
 
 var app = builder.Build();
 
