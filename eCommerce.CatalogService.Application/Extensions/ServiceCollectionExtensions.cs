@@ -1,9 +1,6 @@
 ﻿using eCommerce.CatalogService.Application.Contracts;
 using eCommerce.CatalogService.Application.Implementations;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace eCommerce.CatalogService.Application
 {
@@ -12,6 +9,7 @@ namespace eCommerce.CatalogService.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IProductApplication, ProductApplication>();
+            services.AddScoped<IDistributedCache, DistributedCache>();
             return services;
         }
     }
