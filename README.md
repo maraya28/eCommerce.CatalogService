@@ -1,1 +1,1 @@
-# eCommerce.ProductService
+# eCommerce.CatalogService
